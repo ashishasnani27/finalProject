@@ -1,242 +1,95 @@
-# Banking Application - Spring Boot Backend
+# PIGGYBANK
 
-This project implements a sleek and efficient RESTful API for a simple banking application using Spring Boot. It provides functionalities for managing customers, accounts, deposits, withdrawals, and transactions, all wrapped in a clean and organized structure.
+*PiggyBank* is a web application designed to simulate basic banking operations.  It allows users to sign up, log in, view their account balance, deposit and withdraw funds, and transfer money between accounts.  This project was developed as part of a company initiative [mention company name or project context if applicable].
 
-## ✨ Features
+## Technologies Used
 
-- **Customer Management:** Seamlessly create, retrieve, and delete customer records, including name, address, phone number, and email.
-- **Account Management:** Effortlessly manage accounts, linking them to customers with an account number, balance, and specific account type.
-- **Deposits:** Securely deposit funds into existing accounts, updating balances in real-time.
-- **Withdrawals:** Withdraw funds from accounts while gracefully handling insufficient balance scenarios.
-- **Transactions:** Execute smooth fund transfers between accounts, managing withdrawals and deposits concurrently.
+* *Frontend:* Angular (v16 or later - please confirm your version)
+* *Backend:* Spring Boot (v3.x or later - please confirm your version)
+* *Database:*  (Please specify - e.g., MySQL, PostgreSQL, H2, etc. and version)
+* *Build Tools:* (Please specify any other relevant tools: Maven, Gradle, npm, etc.)
+* *Other:*  (e.g., Spring Data JPA, Lombok, etc.)
 
-## 🚀 Technologies Used
+## Features
 
-- **Java 17:** Powering the application's core logic with modern language features.
-- **Spring Boot:** Building the robust and scalable RESTful API foundation.
-- **Spring Data JPA:** Simplifying database interactions with intuitive repositories.
-- **Hibernate:** Providing seamless Object-Relational Mapping (ORM) for efficient data management.
-- **H2 Database:** Utilizing an in-memory database for streamlined development (easily swappable with other databases).
-- **REST Controller:** Defining clear and concise API endpoints for easy integration.
-- **Jackson:** Handling JSON serialization and deserialization for smooth data exchange.
-- **Maven:** Managing dependencies and automating the build process for a smooth developer experience.
+* *User Authentication:* Secure user signup and login functionality.
+* *Account Management:* Users can view their account details, including balance and account type.  Provision for adding new accounts (one account per user currently, consider expanding).
+* *Deposit:*  Deposit funds into an account.
+* *Withdrawal:* Withdraw funds from an account, with balance checks to prevent overdrafts.
+* *Transfer:* Transfer funds between accounts, including recipient account verification.
+* *Transaction History:* (Not implemented in current code, but consider adding a transaction log)
+* *Account Deletion:* Allows users to delete their accounts (including cascading delete functionality for associated accounts - important to highlight this).
+* *User-Friendly Interface:* Clean and intuitive dashboard for managing finances.
+* *Real-time Updates:*  Balance updates are reflected immediately after transactions.  Uses toast notifications to provide feedback to the user.
 
-## 📂 Project Structure
+## Architecture
 
-The project adheres to a standard Spring Boot structure, promoting clarity and maintainability:
+The project follows a client-server architecture, where the Angular frontend communicates with the Spring Boot backend via a RESTful API.
 
-- **`com.RAM.finalProject`**: The root package encompassing the entire application.
-- **`Account`**: Dedicated to account management, housing the entity, repository, service, and controller.
-- **`Customer`**: Focused on customer management, containing the entity, repository, service, and controller.
-- **`Deposit`**: Handling deposit operations, with its entity, repository, service, and controller.
-- **`Withdrawal`**: Managing withdrawal operations, with its entity, repository, service, and controller.
-- **`Transactions`**: Orchestrating transactions, with its entity, repository, service, and controller.
+* *Frontend (Angular):*  Handles user interface and interacts with the backend API.
+* *Backend (Spring Boot):*  Provides REST endpoints for user authentication, account management, and transaction processing.  Interacts with the database to persist data.
 
-## 🔗 API Endpoints
+
+## Installation and Setup
+
+1. *Prerequisites:*
+    * Java JDK (version X - please specify)
+    * Node.js and npm (or yarn)
+    * [Your Database] (with appropriate drivers/connectors)
+
+2. *Backend Setup:*
+    * Clone the project repository.
+    * Navigate to the backend directory.
+    * Configure the database connection in application.properties (or application.yml).
+    * Build the project using Maven/Gradle: ./mvnw clean install (or ./gradlew build).
+    * Run the Spring Boot application: java -jar target/your-application.jar (or equivalent).
+
+3. *Frontend Setup:*
+    * Navigate to the frontend directory.
+    * Install dependencies: npm install (or yarn install).
+    * Run the Angular development server: ng serve.
+
+## Usage
+
+1. *Signup:* Access the signup page and create a new account.
+2. *Login:*  Login using your credentials.
+3. *Dashboard:*  View your account balance and perform actions like deposit, withdrawal, and transfer.
+4. *Add Account:*  If you don't have an existing account, you can add a new account from the dashboard.
+5. *Transactions:*  Make deposits, withdrawals, and transfers by filling in the respective forms.
+
+
+## API Endpoints
 
 ### Customer Management
 
-| Method | Endpoint                   | Description                 |
-| ------ | -------------------------- | --------------------------- |
-| GET    | `/api/bank/customers`      | Retrieves all customers.    |
-| GET    | `/api/bank/customers/{id}` | Retrieves a customer by ID. |
-| POST   | `/api/bank/customers`      | Creates a new customer.     |
-| DELETE | `/api/bank/customers/{id}` | Deletes a customer by ID.   |
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | /api/bank/customers | Create a new customer. |
+| GET | /api/bank/customers | Retrieve all customers (admin use only - consider removing/securing this in production). |
+| GET | /api/bank/customers/{id} | Retrieve a customer by ID. |
+| DELETE | /api/bank/customers/{id} | Delete a customer by ID (along with associated accounts). |
+| POST | /api/bank/signup | Registers a new customer (alternative to direct POST to /customers). |
+| POST | /api/bank/login |  Login a customer (returns customer details on success). |
+
+
 
 ### Account Management
 
-| Method | Endpoint                             | Description                             |
-| ------ | ------------------------------------ | --------------------------------------- |
-| GET    | `/api/bank/accounts`                 | Retrieves all accounts.                 |
-| GET    | `/api/bank/accounts/{accountNumber}` | Retrieves an account by account number. |
-| POST   | `/api/bank/accounts`                 | Creates a new account.                  |
-| DELETE | `/api/bank/accounts/{accountNumber}` | Deletes an account by account number.   |
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | /api/bank/accounts | Retrieve all accounts (admin use only - consider removing/securing). |
+| GET | /api/bank/accounts/{customerId} | Retrieve an account by customer ID. |
+| GET | /api/bank/accounts/byaccountnumber/{accountNumber} | Retrieve an account by account number. |
+| POST | /api/bank/accounts | Create a new account for a customer. |
+| DELETE | /api/bank/accounts/{accountNumber} | Delete an account by account number. |
 
-### Deposits
-
-| Method | Endpoint             | Description                    |
-| ------ | -------------------- | ------------------------------ |
-| POST   | `/api/bank/deposits` | Makes a deposit to an account. |
-
-### Withdrawals
-
-| Method | Endpoint                | Description                         |
-| ------ | ----------------------- | ----------------------------------- |
-| POST   | `/api/bank/withdrawals` | Makes a withdrawal from an account. |
 
 ### Transactions
 
-| Method | Endpoint                                         | Description                                     |
-| ------ | ------------------------------------------------ | ----------------------------------------------- |
-| GET    | `/api/bank/transactions`                         | Retrieves all transactions.                     |
-| POST   | `/api/bank/transactions`                         | Creates a new transaction between two accounts. |
-| GET    | `/api/bank/transactions/account/{accountNumber}` | Retrieves transactions for a specific account.  |
-
-## ▶️ Running the Application
-
-1. **Clone:** `git clone https://github.com/your-username/banking-application.git` //Ritika, put your Git URL here
-2. **Navigate:** `cd banking-application`
-3. **Build:** `mvn clean install`
-4. **Run:** `mvn spring-boot:run`
-
-Access the frontend at `http://localhost:8081` .
-
-## 🌱 Future Improvements
-
-- **Enhanced Security:** Implement robust authentication and authorization mechanisms.
-- **Data Validation:** Enforce strict input validation for data integrity.
-- **Comprehensive Error Handling:** Provide detailed and user-friendly error messages.
-- **Loan Management Module:** Integrate a full-fledged loan management system.
-- **Advanced Transaction History:** Implement filtering, pagination, and search capabilities for transaction history.
-- **Polished UI/UX:** Enhance the frontend for a more intuitive and engaging user experience.
-- **Rigorous Testing:** Expand test coverage with comprehensive unit and integration tests.
-
-## 🙌 Contributors
-
-1. Ashish Asnani
-2. Ritika Kar
-3. Maanvitha Allampalli
-
-# finalProject
-
-This application has been designed using java, springboot and  mySql database. 
-
-Application Entry Point
-FinalProjectApplication: This annotated with @SpringBootApplication class is the entry point to the Spring Boot application. 
-Here, SpringApplication is called in the main method. run(FinalProjectApplication.class, args) launches the Spring app, does component scan, and do configurations.
-
-Account Module
-a) Account Entity
-The Account class keeps the state of a bank account. This one is annotated with @Entity and specifies accounts table in the database. 
-Important fields:
-
-        accountNumber: Primary Key, unique account identifier.
-        customerId: The ID of the customer this account belongs to.
-        balance: The latest message balance on the account.
-        accountType: Type of Account (Savings, Checking, etc.).
-        
-Consists of constructors, getters, and setters as well as toString.
-
-b) AccountRepository
-Interface extending JpaRepository<Account, String>. Spring Data JPA CRUD over Account entity.
-
-c) AccountService
-Business logic layer with @Service annotation. 
-Important methods:
-
-        getAllAccounts(): Fetches all the accounts.
-        getAccountByNumber(String accountNumber): Searches for an account using its number.
-        createAccount(Account account): Allows creating and saving a new account.
-        deleteAccount(String accountNumber): Deletes an account by passing in account number.
-        
-d) AccountController
-Uses @RestController annotation and provides endpoints for account-related operations.
-Routes:
-
-        GET /api/bank/accounts: Retrieves all accounts.
-        GET /api/bank/accounts/{accountNumber}: Retrieve an individual account using the account number.
-        POST /api/bank/accounts: To create an account.
-        DELETE /api/bank/accounts/{accountNumber}: Remove account by number.
-        
-Customer Module
-a) Customer Entity
-Represents a customer class mapped with customers table. 
-Key fields:
-
-        id: Auto-generated ID, Primary Key.
-        name, address, phone, and email: Fundamental information for the customer.
-        
-Contains constructors, getters, and setters.
-b) CustomerRepository
-Interface which extends JpaRepository<Customer, Long>. Provides CRUD operations for Customer entity.
-
-c) CustomerService
-Implemented with @Service, has business logic related to Customer. 
-Primary functions:
-
-        getAllCustomers(): Retrieves all the customers.
-        getCustomerById(Long id): Retrieves a customer based on their ID.
-        createCustomer(Customer customer): For adding a new customer.
-        deleteCustomer(Long id): Deletes customer with a given ID.
-d) CustomerController
-Provides request mapping for Customer and is tagged with @RestController.
-Routes:
-
-        GET /api/bank/customers: Get All Customers.
-        GET /api/bank/customers/{id}: Retrieves a customer with specified ID.
-        POST /api/bank/customers: To create a new customer.
-        DELETE /api/bank/customers/{id}: Remove a customer by ID.
-        
-Deposit Module
-a) Deposit Entity
-Represents a deposit transaction, mapped into deposits table.
-
-        depositId: Identifier for the deposit.
-        account: Number of deposit account.
-        amount: Deposit amount.
-        depositDate: Date of Deposit.
-b) DepositRepository
-Interface that extends JpaRepository<Deposit, Long>. Provides CRUD operations for Deposit entity.
-
-c) DepositService
-Annotated with @Service. This service class handles deposit operations.
-createDeposit(Deposit deposit): Verifies if the account has been created, updates the account's balance, and finally saves the deposit transaction.
-
-d) DepositController
-Handles deposit requests and issues them via the DepositController.
-Route: POST /api/bank/deposits: Create a new deposit.
-
-Transaction Module
-a) Transaction Entity
-A Transaction between Accounts in a Bank, maps to transactions table. 
-Key Fields:
-
-        transactionId: Unique transaction ID.
-        sourceAccountNumber: Sender's account number.
-        targetAccountNumber: Recipient's account number.
-        amount: Amount transferred.
-        transactionDate: Date of transaction.
-        
-b) TransactionRepository
-Interface extending JpaRepository<Transaction, Long>. Exposes CRUDs for Transaction entity.
-
-c) TransactionService
-The principal logic for creating transactions. 
-Important functions:
-
-        getAllTransactions(): Retrieves all transactions.
-        createTransaction(...): Creates transaction transferring from source account to target account.
-        getTransactionsByAccount(String accountNumber): Returns a list of transactions for a given account.
-        
-d) TransactionController
-Handles HTTP requests for transactions.
-Routes:
-
-        GET /api/bank/transactions: Shows all transactions.
-        POST /api/bank/transactions: Creates a transaction.
-        GET /api/bank/transactions/account/{accountNumber}: Gets transactions of an account.
-        
-Withdrawal Module
-a) Withdrawal Entity
-Maps a withdrawal transaction to the withdrawals table.
-
-        withdrawalId: Unique identifier for each withdrawal.
-        account: Linked account number.
-        amount: Withdrawn amount.
-        withdrawalDate: Date of withdrawal.
-        
-b) WithdrawalRepository
-Interface extending JpaRepository<Withdrawal, Long>. Provides CRUD operations for Withdrawal entity.
-
-c) WithdrawalService
-Responsible for processing withdrawal transactions. Main method:
-
-createWithdrawal(Withdrawal withdrawal): Verifies sufficient funds, deducts the amount, and saves the withdrawal.
-d) WithdrawalController
-Handles HTTP requests for withdrawals.
-
-Route: POST /api/bank/withdrawals: Create a new withdrawal.
-Configuration and Dependencies
-
-Database Configuration: Uses application.properties or application.yml for database settings.
-Dependencies: List of Spring Boot Starter dependencies, Spring Data JPA, and other libraries defined in pom.xml.
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | /api/bank/deposits | Deposit funds into an account. |
+| POST | /api/bank/withdrawals | Withdraw funds from an account. |
+| POST | /api/bank/transactions | Transfer funds between accounts. |
+| GET | /api/bank/transactions | Get all transactions (admin - consider security restrictions). |
+| GET | /api/bank/transactions/account/{accountNumber} | Get transactions for a specific account. |
