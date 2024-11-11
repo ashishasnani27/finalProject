@@ -1,0 +1,87 @@
+<style>
+    .signup-container {
+      background-color: #f3f4f6;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+  
+    .signup-card {
+      background-color: white;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      width: 100%;
+      max-width: 32rem;
+    }
+  
+    .signup-card__title {
+      font-size: 1.875rem;
+      font-weight: bold;
+      color: #2563eb;
+      margin-bottom: 1.5rem;
+    }
+  
+    .signup-card__input {
+      width: 94%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.375rem;
+      color: #4b5563;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+  
+    .signup-card__input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.5);
+    }
+  
+    .signup-card__button {
+      background-color: #2563eb;
+      color: white;
+      font-weight: bold;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+  
+    .signup-card__button:hover {
+      background-color: #1e40af;
+    }
+  
+    .signup-card__link {
+      color: #2563eb;
+      font-weight: medium;
+      text-decoration: none;
+      display: block;
+      text-align: right;
+      margin-top: 1rem;
+    }
+  
+    .signup-card__link:hover {
+      color: #1e40af;
+    }
+  </style>
+  
+  <div class="signup-container">
+    <div class="signup-card">
+      <h2 class="signup-card__title">Join MyBanking</h2>
+      <form (ngSubmit)="onSubmit()">
+        <input type="text" [(ngModel)]="name" name="name" id="customerName" placeholder="Enter your name" class="signup-card__input" required>
+        <input type="text" [(ngModel)]="address" name="address" id="customerAddress" placeholder="Enter your address" class="signup-card__input" required>
+        <input type="text" [(ngModel)]="phone" name="phone" id="customerPhone" placeholder="Enter your phone number" class="signup-card__input" required>
+        <input type="email" [(ngModel)]="email" name="email" id="customerEmail" placeholder="Enter your email" class="signup-card__input" required>
+        <input type="password" [(ngModel)]="password" name="password" id="customerPassword" placeholder="Enter your password" class="signup-card__input" required>
+        <button type="submit" class="signup-card__button">Sign Up</button>
+      </form>
+      <a href="#" class="signup-card__link">Already have an account?</a>
+    </div>
+  </div>

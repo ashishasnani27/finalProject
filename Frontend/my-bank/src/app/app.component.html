@@ -1,0 +1,91 @@
+<style>
+  .banking-app {
+    background-color: #f3f4f6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .banking-app__card {
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 32rem;
+  }
+
+  .banking-app__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .banking-app__title {
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: #2563eb;
+  }
+
+  .banking-app__nav a {
+    color: #2563eb;
+    font-weight: medium;
+    margin-left: 1rem;
+    text-decoration: none;
+  }
+
+  .banking-app__nav a:hover {
+    color: #1e40af;
+  }
+
+  .banking-app__description {
+    color: #4b5563;
+    margin-bottom: 2rem;
+  }
+
+  .banking-app__button {
+    background-color: #2563eb;
+    color: white;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .banking-app__button:hover {
+    background-color: #1e40af;
+  }
+
+  .hidden {
+    display: none;
+  }
+  .logoimg{
+    width: 110px;
+    height: auto;
+  }
+</style>
+
+<div class="banking-app" [class.hidden]="showLoginOrSignup">
+  <div class="banking-app__card">
+    <div class="banking-app__header">
+      <!-- <h2 class="banking-app__title">PiggyBank</h2> -->
+      <img src="../../assets/piggylogo.png" class="logoimg" />
+      <nav class="banking-app__nav">
+        <a routerLink="/login" routerLinkActive="active">Login</a>
+        <a routerLink="/signup" routerLinkActive="active">Signup</a>
+      </nav>
+    </div>
+    <p class="banking-app__description">
+      Welcome to PiggyBank, your one-stop solution for all your banking needs. Manage your finances with ease and security.
+    </p>
+    <div class="flex justify-center">
+      <a routerLink="/login" class="banking-app__button">Get Started</a>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,85 @@
+<style>
+    .login-container {
+      background-color: #f3f4f6;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+  
+    .login-card {
+      background-color: white;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      width: 100%;
+      max-width: 32rem;
+    }
+  
+    .login-card__title {
+      font-size: 1.875rem;
+      font-weight: bold;
+      color: #2563eb;
+      margin-bottom: 1.5rem;
+    }
+  
+    .login-card__input {
+      width: 94%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.375rem;
+      color: #4b5563;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+  
+    .login-card__input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.5);
+    }
+  
+    .login-card__button {
+      background-color: #2563eb;
+      color: white;
+      font-weight: bold;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+  
+    .login-card__button:hover {
+      background-color: #1e40af;
+    }
+  
+    .login-card__link {
+      color: #2563eb;
+      font-weight: medium;
+      text-decoration: none;
+      display: block;
+      text-align: right;
+      margin-top: 1rem;
+    }
+  
+    .login-card__link:hover {
+      color: #1e40af;
+    }
+  </style>
+  
+  <div class="login-container">
+    <div class="login-card">
+      <h2 class="login-card__title">Welcome Back</h2>
+      <form (ngSubmit)="onSubmit()">
+        <input type="email" [(ngModel)]="email" name="email" placeholder="Enter your email" class="login-card__input" required>
+        <input type="password" [(ngModel)]="password" name="password" placeholder="Enter your password" class="login-card__input" required>
+        <button type="submit" class="login-card__button">Login</button>
+      </form>
+      <a href="#" class="login-card__link">Forgot Password?</a>
+    </div>
+  </div>
+  
