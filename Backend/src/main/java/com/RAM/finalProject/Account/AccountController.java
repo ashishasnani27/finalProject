@@ -35,6 +35,12 @@ public class AccountController {
         return ResponseEntity.ok(account);
     }
 
+    @GetMapping("/accounts/byaccountnumber/{id}")
+    public ResponseEntity<Account> getAccountByNumbernew(@PathVariable String id) {
+        Account account = accountService.getAccountByNumbernew(id);
+        return ResponseEntity.ok(account);
+    }
+
     @PostMapping("/accounts")
     public ResponseEntity<Account> createAccount(@RequestBody Account account) {
         Account createdAccount = accountService.createAccount(account);

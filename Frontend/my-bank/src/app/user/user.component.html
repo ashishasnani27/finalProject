@@ -1,657 +1,669 @@
 <style>
-    .dashboard {
-      min-height: 100vh;
-      background-color: #f3f4f6;
-      padding: 1.5rem;
-    }
-  
-    .top-bar {
-      background-color: white;
-      padding: 1.25rem 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      margin-bottom: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-  
-    .balance-container {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-  
-    .wallet-icon {
-      background-color: #2563eb;
-      color: white;
-      padding: 0.75rem;
-      border-radius: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  
-    .balance-info {
-      display: flex;
-      flex-direction: column;
-    }
-  
-    .balance-label {
-      color: #6b7280;
-      font-size: 0.875rem;
-    }
-  
-    .balance-amount {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #1f2937;
-    }
-  
-    .user-profile {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      cursor: pointer;
-      padding: 0.5rem 1rem;
-      border-radius: 0.75rem;
-      transition: background-color 0.3s ease;
-    }
-  
-    .user-profile:hover {
-      background-color: #f3f4f6;
-    }
-  
-    .user-avatar {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 50%;
-      background-color: #2563eb;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
-  
-    .user-name {
-      font-weight: 500;
-      color: #1f2937;
-    }
-  
-    .actions-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-  
-    .action-card {
-      background-color: white;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-  
-    .action-card:hover {
-      transform: translateY(-4px);
-    }
-  
-    .action-icon {
-      background-color: #2563eb;
-      color: white;
-      width: 3rem;
-      height: 3rem;
-      border-radius: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-  
-    .action-title {
-      font-size: 1.25rem;
-      font-weight: bold;
-      color: #1f2937;
-      margin-bottom: 0.5rem;
-    }
-  
-    .action-description {
-      color: #6b7280;
-      font-size: 0.875rem;
-    }
-  
-    .recent-transactions {
-      background-color: white;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      margin-top: 2rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    }
-  
-    .transactions-title {
-      font-size: 1.25rem;
-      font-weight: bold;
-      color: #1f2937;
-      margin-bottom: 1rem;
-    }
-  
-    .transaction-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-  
-    .transaction-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      background-color: #f9fafb;
-    }
-  
-    .transaction-info {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-  
-    .transaction-icon {
-      background-color: #2563eb;
-      color: white;
-      padding: 0.5rem;
-      border-radius: 0.5rem;
-    }
-  
-    .transaction-details {
-      display: flex;
-      flex-direction: column;
-    }
-  
-    .transaction-type {
-      font-weight: 500;
-      color: #1f2937;
-    }
-  
-    .transaction-date {
-      font-size: 0.875rem;
-      color: #6b7280;
-    }
-  
-    .transaction-amount {
-      font-weight: 500;
-    }
-  
-    .amount-positive {
-      color: #059669;
-    }
-  
-    .amount-negative {
-      color: #dc2626;
-    }
-    .toast {
-  position: fixed;
-  top: 20px;
-  right: 46%;
-  left: auto;
-  background-color: #4caf50;
-  color: white;
-  padding: 18px;
-  border-radius: 8px;
-  font-size: large;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: opacity 0.5s ease-in-out;
+  .dashboard {
+    min-height: 100vh;
+    background-color: #f3f4f6;
+    padding: 1.5rem;
+  }
+
+  .top-bar {
+    background-color: white;
+    padding: 1.25rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .balance-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .wallet-icon {
+    background-color: #2563eb;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .balance-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .balance-label {
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+
+  .balance-amount {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1f2937;
+  }
+
+  .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .user-profile:hover {
+    background-color: #f3f4f6;
+  }
+
+  .user-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: #2563eb;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  .user-name {
+    font-weight: 500;
+    color: #1f2937;
+  }
+
+  .actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .action-card {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .action-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .action-icon {
+    background-color: #2563eb;
+    color: white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .action-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+
+  .action-description {
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+
+  .recent-transactions {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .transactions-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 1rem;
+  }
+
+  .transaction-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #f9fafb;
+  }
+
+  .transaction-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .transaction-icon {
+    background-color: #2563eb;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+
+  .transaction-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .transaction-type {
+    font-weight: 500;
+    color: #1f2937;
+  }
+
+  .transaction-date {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .transaction-amount {
+    font-weight: 500;
+  }
+
+  .amount-positive {
+    color: #059669;
+  }
+
+  .amount-negative {
+    color: #dc2626;
+  }
+  .toast {
+position: fixed;
+top: 20px;
+right: 46%;
+left: auto;
+background-color: #4caf50;
+color: white;
+padding: 18px;
+border-radius: 8px;
+font-size: large;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+transition: opacity 0.5s ease-in-out;
 }
 /* Add this CSS above the existing styles */
 .add-account-form {
-  background-color: white;
-  padding: 1.25rem 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
+background-color: white;
+padding: 1.25rem 2rem;
+border-radius: 1rem;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+margin-bottom: 2rem;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 1.5rem;
 }
 
 .add-account-form .form-field {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 1rem;
-  flex-direction: column;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+gap: 1rem;
+flex-direction: column;
 }
 
 .form-field1{display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 1rem;
-  flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+gap: 1rem;
+flex-direction: column;
 }
 
 
 
 .add-account-form label {
-  margin-top: 25px;
-  margin-bottom: -10px;
-  color: #6b7280;
-  font-size: 0.875rem;
-  font-weight: 500;
+margin-top: 25px;
+margin-bottom: -10px;
+color: #6b7280;
+font-size: 0.875rem;
+font-weight: 500;
 }
 
 .add-account-form .form-input,
 .add-account-form .form-select {
-  width: 23rem;
-  background-color: #f9fafb;
-  padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  color: #1f2937;
-  flex: 1;
+width: 23rem;
+background-color: #f9fafb;
+padding: 0.75rem 1rem;
+border-radius: 0.75rem;
+border: none;
+outline: none;
+font-size: 1rem;
+color: #1f2937;
+flex: 1;
 }
 
 .form-input1{
-  width: 23rem;
-  background-color: #f9fafb;
-  padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
-  border: none;
-  outline: none;
-  font-size: 0.9rem;
-  color: #1f2937;
-  flex: 1;
+width: 23rem;
+background-color: #f9fafb;
+padding: 0.75rem 1rem;
+border-radius: 0.75rem;
+border: none;
+outline: none;
+font-size: 0.9rem;
+color: #1f2937;
+flex: 1;
 }
 
 .form-select1 {
-  width: 25rem;
-  background-color: #f9fafb;
-  padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  color: #1f2937;
-  flex: 1;
+width: 25rem;
+background-color: #f9fafb;
+padding: 0.75rem 1rem;
+border-radius: 0.75rem;
+border: none;
+outline: none;
+font-size: 1rem;
+color: #1f2937;
+flex: 1;
 }
 
 .add-account-form .form-input:focus,
 .add-account-form .form-select:focus {
-  box-shadow: 0 0 0 2px #2563eb;
+box-shadow: 0 0 0 2px #2563eb;
 }
 
 .add-account-form .form-button {
-  background-color: #2563eb;
-  color: white;
-  padding: 0.75rem 1.25rem;
-  border-radius: 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
-  align-self: center;
+background-color: #2563eb;
+color: white;
+padding: 0.75rem 1.25rem;
+border-radius: 0.75rem;
+font-size: 0.875rem;
+font-weight: 500;
+transition: background-color 0.3s ease;
+margin-top: 20px;
+align-self: center;
 }
 
 .form-button1 {
-  background-color: #2563eb;
-  color: white;
-  padding: 0.75rem 1.25rem;
-  border-radius: 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
-  align-self: center;
+background-color: #2563eb;
+color: white;
+padding: 0.75rem 1.25rem;
+border-radius: 0.75rem;
+font-size: 0.875rem;
+font-weight: 500;
+transition: background-color 0.3s ease;
+margin-top: 20px;
+align-self: center;
 }
 
 .add-account-form .form-button:hover {
-  background-color: #1d4ed8;
+background-color: #1d4ed8;
 }
 
 form{
-  display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
+display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .action-card1{
-  display: flex;
-  justify-content: center;
+display: flex;
+justify-content: center;
 }
 
 .labels{
-  align-self: center;
-  font-size: x-large;
-  font-weight: 700;
+align-self: center;
+font-size: x-large;
+font-weight: 700;
 }
 
 .deleteButton{
-  color: white;
-    border-color: transparent;
-    border-radius: 8px;
-    padding: 8px;
-    background-color: red;
-    cursor: pointer; /* Changes cursor to pointer on hover */
-            transition: background-color 0.3s;
+color: white;
+  border-color: transparent;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: red;
+  cursor: pointer; /* Changes cursor to pointer on hover */
+          transition: background-color 0.3s;
 }
 .deleteButton:hover {
-            background-color: darkred;
-        }
+          background-color: darkred;
+      }
 
-        .modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-  }
+      .modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
 
-  .modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 24px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 400px;
-    z-index: 1001;
-  }
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+  z-index: 1001;
+}
 
-  .modal-header {
-    margin-bottom: 16px;
-  }
+.modal-header {
+  margin-bottom: 16px;
+}
 
-  .modal-title {
-    color: #dc2626;
-    font-size: 20px;
-    font-weight: 600;
-    margin: 0;
-  }
+.modal-title {
+  color: #dc2626;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
 
-  .modal-body {
-    margin-bottom: 24px;
-  }
+.modal-body {
+  margin-bottom: 24px;
+}
 
-  .warning-text {
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
+.warning-text {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
 
-  .description {
-    color: #666;
-    font-size: 14px;
-    line-height: 1.5;
-  }
+.description {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
 
-  .modal-footer {
-    display: flex;
-    gap: 12px;
-    justify-content: flex-end;
-  }
+.modal-footer {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
 
-  .btn {
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-    font-size: 14px;
-  }
+.btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+}
 
-  .btn-cancel {
-    background-color: #e5e7eb;
-    color: #374151;
-  }
+.btn-cancel {
+  background-color: #e5e7eb;
+  color: #374151;
+}
 
-  .btn-cancel:hover {
-    background-color: #d1d5db;
-  }
+.btn-cancel:hover {
+  background-color: #d1d5db;
+}
 
-  .btn-delete {
-    background-color: #dc2626;
-    color: white;
-  }
+.btn-delete {
+  background-color: #dc2626;
+  color: white;
+}
 
-  .btn-delete:hover {
-    background-color: #b91c1c;
-  }
+.btn-delete:hover {
+  background-color: #b91c1c;
+}
 
-  /* Show modal when active class is present */
-  .modal-overlay.active {
-    display: block;
-  }
-  .logoimg{
-    width: 60px;
-    height: auto;
-  }
-  </style>
+/* Show modal when active class is present */
+.modal-overlay.active {
+  display: block;
+}
+.logoimg{
+  width: 60px;
+  height: auto;
+}
+</style>
 
 <div *ngIf="showToast" class="toast">
-    {{ toastMessage }}
-  </div>
+  {{ toastMessage }}
+</div>
 
 
 <div class="modal-overlay" [class.active]="isModalVisible">
+
+<div class="modal">
+  <div class="modal-header">
+    <h2 class="modal-title">Delete Account</h2>
+  </div>
   
-  <div class="modal">
-    <div class="modal-header">
-      <h2 class="modal-title">Delete Account</h2>
+  <div class="modal-body">
+    <p class="warning-text">Are you sure you want to delete your account?</p>
+    <p class="description">
+      This action cannot be undone. This will permanently delete your account and remove all your data from our servers.
+    </p>
+  </div>
+  
+  <div class="modal-footer">
+    <button class="btn btn-cancel" (click)="hideModal()">Cancel</button>
+    <button class="btn btn-delete" (click)="deleteAccount()">Yes, delete my account</button>
+  </div>
+</div>
+</div>
+
+<div class="dashboard">
+  <!-- Top Bar -->
+  <div *ngIf="user" class="top-bar">
+    <div *ngIf="userAccDetails" class="balance-container">
+      <img src="../../assets/piggylogo.png" class="logoimg" />
+      <div class="wallet-icon">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+          <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+          <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+        </svg>
+      </div>
+      <div class="balance-info">
+        
+        <span class="balance-label">Total Balance</span>
+        <span class="balance-amount">{{userAccDetails.balance}}</span>
+      </div>
     </div>
-    
-    <div class="modal-body">
-      <p class="warning-text">Are you sure you want to delete your account?</p>
-      <p class="description">
-        This action cannot be undone. This will permanently delete your account and remove all your data from our servers.
-      </p>
+    <div class="user-profile">
+      <!-- <div class="user-avatar">Hi</div> -->
+       
+      <span class="user-name">Hello, {{user.name}}</span>
+      <button class="btn btn-delete" (click)="showModal()">Delete Account</button>
     </div>
+  </div>
+
+  <!-- Add Account Form -->
+  <div *ngIf="showaddaccountform" class="add-account-form">
+    <form (ngSubmit)="onSubmit()" class="flex items-center gap-4">
+      <div class="form-field">
+        <label for="accountId">Account ID:</label>
+        <input type="text" [(ngModel)]="accountNumber" name="accountNumber"  id="accountId" class="form-input">
+      </div>
+      <div class="form-field">
+        <label for="customerId">Customer ID: (Fetched) </label>
+        <input type="text" id="customerId" class="form-input">
+      </div>
+      <div class="form-field">
+        <label for="accountType">Account Type:</label>
+        <select id="accountType" [(ngModel)]="accountType" name="accountType" class="form-select1">
+          <option value="">Select Account Type</option>
+          <option value="current">Current</option>
+          <option value="savings">Savings</option>
+          <option value="salary">Salary</option>
+          <!-- Add more account types as needed -->
+        </select>
+      </div>
+      <button type="submit" class="form-button">Add Account</button>
+    </form>
+  </div>
+
+  <div class="action-card action-card1" id="depositForm" *ngIf="isDepositFormVisible" >
+    <form (ngSubmit)="onSubmitDeposit($event)" >
+      <div class="form-field1">
+        <label class="labels">Deposit</label>
+        <input type="text" [(ngModel)]="depositAmount" name="accountNumber"  id="accountId" class="form-input1" placeholder="Enter the amount you want to deposit">
+      </div>        
+      <button type="submit" class="form-button1">Deposit</button>
+    </form>
+  </div>
+
+  <div class="action-card action-card1" id="withdrawForm" *ngIf="isWithdrawFormVisible" >
+    <form (ngSubmit)="onSubmitWithdraw($event)" >
+      <div class="form-field1">
+        <label class="labels">Withdraw</label>
+        <input type="text" [(ngModel)]="withdrawAmount" name="accountNumber"  id="accountId" class="form-input1" placeholder="Enter the amount you want to withdraw">
+      </div>        
+      <button type="submit" class="form-button1">Withdraw</button>
+    </form>
+  </div>
+
+  <div class="action-card action-card1" id="depositForm" *ngIf="isTransferFormVisible" >
+    <form (ngSubmit)="onSubmitTransfer($event)" >
+      <div class="form-field1">
+        <label class="labels">Transfer Funds</label>
+        <div style="display: flex; flex-direction: row;">
+        <input type="text" [(ngModel)]="recipientAccountNumber" name="accountNumber"  id="accountId" class="form-input1" placeholder="Enter the recipient's account number">
+        <button style="padding-left: 15px;
+        padding-right: 15px;
+        margin-left: 15px;
+        color: #ffffff;
+        background-color: green;
+        border-color: transparent;
+        border-radius: 8px;
+        cursor: pointer;
+        " type="button" (click)="onClickVerify()" name="verifybutton" >Verify</button>
+      </div>
+        <p style="margin-left: 20px;"  name="p">{{recipientAccountName}}</p>
+
+        <input type="text" [(ngModel)]="transferAmount" name="amount"  id="accountId" class="form-input1" placeholder="Enter the amount to transfer">
+      </div>        
+      <button type="submit" class="form-button1">Transfer</button>
+    </form>
+  </div>
+  
+  <!-- Action Cards -->
+  <div class="actions-grid">
+    <!-- Deposit Card -->
+    <div class="action-card" (click)="toggleDepositForm()">
+      <div class="action-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m12 19-7-7 7-7"></path>
+          <path d="M19 12H5"></path>
+        </svg>
+      </div>
+      <h3 class="action-title">Deposit Money</h3>
+      <p class="action-description">Add funds to your account instantly</p>
+    </div>
+
     
-    <div class="modal-footer">
-      <button class="btn btn-cancel" (click)="hideModal()">Cancel</button>
-      <button class="btn btn-delete" (click)="deleteAccount()">Yes, delete my account</button>
+
+    <!-- Withdrawal Card -->
+    <div class="action-card" (click)="toggleWithdrawForm()">
+      <div class="action-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m19 12-7 7-7-7"></path>
+          <path d="M12 19V5"></path>
+        </svg>
+      </div>
+      <h3 class="action-title">Withdraw Funds</h3>
+      <p class="action-description">Withdraw money from your account</p>
+    </div>
+
+    <!-- Transfer Card -->
+    <div class="action-card" (click)="toggleTransferForm()">
+      <div class="action-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m17 7-7 7"></path>
+          <path d="M17 7h-6"></path>
+          <path d="M17 7v6"></path>
+          <path d="m7 17 7-7"></path>
+          <path d="M7 17h6"></path>
+          <path d="M7 17v-6"></path>
+        </svg>
+      </div>
+      <h3 class="action-title">Transfer Money</h3>
+      <p class="action-description">Send money to other accounts</p>
+    </div>
+  </div>
+
+  <!-- Recent Transactions -->
+  <div class="recent-transactions">
+    <h3 class="transactions-title">Recent Transactions</h3>
+    <div class="transaction-list">
+     
+      <div class="transaction-item">
+        <div class="transaction-info">
+          <div class="transaction-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 19-7-7 7-7"></path>
+              <path d="M19 12H5"></path>
+            </svg>
+          </div>
+          <div class="transaction-details">
+            <span class="transaction-type">Deposit</span>
+            <span class="transaction-date">Today, 2:30 PM</span>
+          </div>
+        </div>
+        <span class="transaction-amount amount-positive">+$500.00</span>
+      </div>
+
+    
+      <div class="transaction-item">
+        <div class="transaction-info">
+          <div class="transaction-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m19 12-7 7-7-7"></path>
+              <path d="M12 19V5"></path>
+            </svg>
+          </div>
+          <div class="transaction-details">
+            <span class="transaction-type">Withdrawal</span>
+            <span class="transaction-date">Yesterday, 4:45 PM</span>
+          </div>
+        </div>
+        <span class="transaction-amount amount-negative">-$200.00</span>
+      </div>
+
+    
+      <div class="transaction-item">
+        <div class="transaction-info">
+          <div class="transaction-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m17 7-7 7"></path>
+              <path d="M17 7h-6"></path>
+              <path d="M17 7v6"></path>
+              <path d="m7 17 7-7"></path>
+              <path d="M7 17h6"></path>
+              <path d="M7 17v-6"></path>
+            </svg>
+          </div>
+          <div class="transaction-details">
+            <span class="transaction-type">Transfer to John</span>
+            <span class="transaction-date">22 Oct, 11:30 AM</span>
+          </div>
+        </div>
+        <span class="transaction-amount amount-negative">-$150.00</span>
+      </div>
     </div>
   </div>
 </div>
-  
-  <div class="dashboard">
-    <!-- Top Bar -->
-    <div *ngIf="user" class="top-bar">
-      <div *ngIf="userAccDetails" class="balance-container">
-        <img src="../../assets/piggylogo.png" class="logoimg" />
-        <div class="wallet-icon">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
-            <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
-            <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
-          </svg>
-        </div>
-        <div class="balance-info">
-          
-          <span class="balance-label">Total Balance</span>
-          <span class="balance-amount">{{userAccDetails.balance}}</span>
-        </div>
-      </div>
-      <div class="user-profile">
-        <!-- <div class="user-avatar">Hi</div> -->
-         
-        <span class="user-name">Hello, {{user.name}}</span>
-        <button class="btn btn-delete" (click)="showModal()">Delete Account</button>
-      </div>
-    </div>
-  
-    <!-- Add Account Form -->
-    <div *ngIf="showaddaccountform" class="add-account-form">
-      <form (ngSubmit)="onSubmit()" class="flex items-center gap-4">
-        <div class="form-field">
-          <label for="accountId">Account ID:</label>
-          <input type="text" [(ngModel)]="accountNumber" name="accountNumber"  id="accountId" class="form-input">
-        </div>
-        <div class="form-field">
-          <label for="customerId">Customer ID: (Fetched) </label>
-          <input type="text" id="customerId" class="form-input">
-        </div>
-        <div class="form-field">
-          <label for="accountType">Account Type:</label>
-          <select id="accountType" [(ngModel)]="accountType" name="accountType" class="form-select1">
-            <option value="">Select Account Type</option>
-            <option value="current">Current</option>
-            <option value="savings">Savings</option>
-            <option value="salary">Salary</option>
-            <!-- Add more account types as needed -->
-          </select>
-        </div>
-        <button type="submit" class="form-button">Add Account</button>
-      </form>
-    </div>
 
-    <div class="action-card action-card1" id="depositForm" *ngIf="isDepositFormVisible" >
-      <form (ngSubmit)="onSubmitDeposit($event)" >
-        <div class="form-field1">
-          <label class="labels">Deposit</label>
-          <input type="text" [(ngModel)]="depositAmount" name="accountNumber"  id="accountId" class="form-input1" placeholder="Enter the amount you want to deposit">
-        </div>        
-        <button type="submit" class="form-button1">Deposit</button>
-      </form>
-    </div>
-  
-    <div class="action-card action-card1" id="withdrawForm" *ngIf="isWithdrawFormVisible" >
-      <form (ngSubmit)="onSubmitWithdraw($event)" >
-        <div class="form-field1">
-          <label class="labels">Withdraw</label>
-          <input type="text" [(ngModel)]="withdrawAmount" name="accountNumber"  id="accountId" class="form-input1" placeholder="Enter the amount you want to withdraw">
-        </div>        
-        <button type="submit" class="form-button1">Withdraw</button>
-      </form>
-    </div>
-
-    <div class="action-card action-card1" id="depositForm" *ngIf="isTransferFormVisible" >
-      <form (ngSubmit)="onSubmitTransfer($event)" >
-        <div class="form-field1">
-          <label class="labels">Transfer Funds</label>
-          <input type="text" [(ngModel)]="recipientAccountNumber" name="accountNumber"  id="accountId" class="form-input1" placeholder="Enter the recipient's account number">
-          <input type="text" [(ngModel)]="transferAmount" name="amount"  id="accountId" class="form-input1" placeholder="Enter the amount to transfer">
-        </div>        
-        <button type="submit" class="form-button1">Transfer</button>
-      </form>
-    </div>
-    
-    <!-- Action Cards -->
-    <div class="actions-grid">
-      <!-- Deposit Card -->
-      <div class="action-card" (click)="toggleDepositForm()">
-        <div class="action-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m12 19-7-7 7-7"></path>
-            <path d="M19 12H5"></path>
-          </svg>
-        </div>
-        <h3 class="action-title">Deposit Money</h3>
-        <p class="action-description">Add funds to your account instantly</p>
-      </div>
-
-      
-  
-      <!-- Withdrawal Card -->
-      <div class="action-card" (click)="toggleWithdrawForm()">
-        <div class="action-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m19 12-7 7-7-7"></path>
-            <path d="M12 19V5"></path>
-          </svg>
-        </div>
-        <h3 class="action-title">Withdraw Funds</h3>
-        <p class="action-description">Withdraw money from your account</p>
-      </div>
-  
-      <!-- Transfer Card -->
-      <div class="action-card" (click)="toggleTransferForm()">
-        <div class="action-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m17 7-7 7"></path>
-            <path d="M17 7h-6"></path>
-            <path d="M17 7v6"></path>
-            <path d="m7 17 7-7"></path>
-            <path d="M7 17h6"></path>
-            <path d="M7 17v-6"></path>
-          </svg>
-        </div>
-        <h3 class="action-title">Transfer Money</h3>
-        <p class="action-description">Send money to other accounts</p>
-      </div>
-    </div>
-  
-    <!-- Recent Transactions -->
-    <div class="recent-transactions">
-      <h3 class="transactions-title">Recent Transactions</h3>
-      <div class="transaction-list">
-       
-        <div class="transaction-item">
-          <div class="transaction-info">
-            <div class="transaction-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m12 19-7-7 7-7"></path>
-                <path d="M19 12H5"></path>
-              </svg>
-            </div>
-            <div class="transaction-details">
-              <span class="transaction-type">Deposit</span>
-              <span class="transaction-date">Today, 2:30 PM</span>
-            </div>
-          </div>
-          <span class="transaction-amount amount-positive">+$500.00</span>
-        </div>
-  
-      
-        <div class="transaction-item">
-          <div class="transaction-info">
-            <div class="transaction-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m19 12-7 7-7-7"></path>
-                <path d="M12 19V5"></path>
-              </svg>
-            </div>
-            <div class="transaction-details">
-              <span class="transaction-type">Withdrawal</span>
-              <span class="transaction-date">Yesterday, 4:45 PM</span>
-            </div>
-          </div>
-          <span class="transaction-amount amount-negative">-$200.00</span>
-        </div>
-  
-      
-        <div class="transaction-item">
-          <div class="transaction-info">
-            <div class="transaction-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m17 7-7 7"></path>
-                <path d="M17 7h-6"></path>
-                <path d="M17 7v6"></path>
-                <path d="m7 17 7-7"></path>
-                <path d="M7 17h6"></path>
-                <path d="M7 17v-6"></path>
-              </svg>
-            </div>
-            <div class="transaction-details">
-              <span class="transaction-type">Transfer to John</span>
-              <span class="transaction-date">22 Oct, 11:30 AM</span>
-            </div>
-          </div>
-          <span class="transaction-amount amount-negative">-$150.00</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  

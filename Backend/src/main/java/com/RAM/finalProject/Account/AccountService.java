@@ -22,6 +22,10 @@ public class AccountService {
         return accountRepository.findByCustomerId(id);
     }
 
+    public Account getAccountByNumbernew(String id) {
+        return accountRepository.findById(id).orElse(null);
+    }
+
     public Account createAccount(Account account) {
         System.out.println(account.getAccountNumber() + " " + account.getAccountType()+ " " + account.getBalance()+ " " + account.getCustomerId());
         // Account acc = new Account(account.getAccountNumber() , )

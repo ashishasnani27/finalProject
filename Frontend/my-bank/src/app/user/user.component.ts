@@ -28,6 +28,32 @@ export class UserComponent implements AfterViewInit{
   withdrawAmount: any
   transferAmount: any
   recipientAccountNumber: any;
+  recipientAccountName: any;
+
+  onClickVerify(){
+    // event.preventDefault()
+    this.http.get<any>(`http://localhost:8081/api/bank/accounts/byaccountnumber/${this.recipientAccountNumber}`).subscribe({
+      next: (response) => {
+        console.log("response of first api",response);
+        this.http.get<any>(`http://localhost:8081/api/bank/customers/${response.customerId}`).subscribe({
+          next: (response) => {
+            this.recipientAccountName = response.name + "✅";
+            console.log("response of second response" ,response);
+            
+          },
+          error: (error) => {
+            console.error('Login failed:', error);
+            alert('Invalid values');
+          }
+        });
+      },
+      error: (error) => {
+        console.error('Login failed:', error);
+        alert('Invalid values');
+      }
+    });
+
+  }
 
   toggleDepositForm() {
     this.isDepositFormVisible = !this.isDepositFormVisible;
