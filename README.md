@@ -1,95 +1,200 @@
-# PIGGYBANK
+*Banking Application - Spring Boot and Angular*
 
-*PiggyBank* is a web application designed to simulate basic banking operations.  It allows users to sign up, log in, view their account balance, deposit and withdraw funds, and transfer money between accounts.  This project was developed as part of a company initiative [mention company name or project context if applicable].
+This project is a full-stack banking application named *PiggyBank*, designed using Spring Boot for the backend and Angular for the frontend. It enables users to manage customers, accounts, deposits, withdrawals, and transactions via a sleek and efficient RESTful API.
 
-## Technologies Used
+✨ *Features*
 
-* *Frontend:* Angular (v16 or later - please confirm your version)
-* *Backend:* Spring Boot (v3.x or later - please confirm your version)
-* *Database:*  (Please specify - e.g., MySQL, PostgreSQL, H2, etc. and version)
-* *Build Tools:* (Please specify any other relevant tools: Maven, Gradle, npm, etc.)
-* *Other:*  (e.g., Spring Data JPA, Lombok, etc.)
+Customer Management: Create, retrieve, and delete customer records (name, address, phone, and email).
+Account Management: Manage accounts linked to customers with properties like account number, balance, and account type.
+Deposits: Securely deposit funds into accounts with real-time balance updates.
+Withdrawals: Process withdrawals with insufficient balance handling.
+Transactions: Transfer funds smoothly between accounts, handling deposits and withdrawals.
 
-## Features
+🚀 *Technologies Used*
 
-* *User Authentication:* Secure user signup and login functionality.
-* *Account Management:* Users can view their account details, including balance and account type.  Provision for adding new accounts (one account per user currently, consider expanding).
-* *Deposit:*  Deposit funds into an account.
-* *Withdrawal:* Withdraw funds from an account, with balance checks to prevent overdrafts.
-* *Transfer:* Transfer funds between accounts, including recipient account verification.
-* *Transaction History:* (Not implemented in current code, but consider adding a transaction log)
-* *Account Deletion:* Allows users to delete their accounts (including cascading delete functionality for associated accounts - important to highlight this).
-* *User-Friendly Interface:* Clean and intuitive dashboard for managing finances.
-* *Real-time Updates:*  Balance updates are reflected immediately after transactions.  Uses toast notifications to provide feedback to the user.
+Java 17: Core application logic.
+Spring Boot: RESTful API foundation.
+Spring Data JPA: Database operations.
+Hibernate: Object-Relational Mapping (ORM).
+H2 Database: In-memory database (easily swappable).
+REST Controller: API endpoint definitions.
+Jackson: JSON serialization/deserialization.
+Maven: Dependency management.
+Angular: Frontend framework for dynamic user interfaces.
+HTML, CSS, TypeScript: For structured and styled Angular components.
 
-## Architecture
+📂 *Project Structure*
 
-The project follows a client-server architecture, where the Angular frontend communicates with the Spring Boot backend via a RESTful API.
+Backend
 
-* *Frontend (Angular):*  Handles user interface and interacts with the backend API.
-* *Backend (Spring Boot):*  Provides REST endpoints for user authentication, account management, and transaction processing.  Interacts with the database to persist data.
+Root Package (com.RAM.finalProject): Contains all backend components.
+Account: Manages account data (entity, repository, service, controller).
+Customer: Manages customer data (entity, repository, service, controller).
+Deposit: Handles deposit operations (entity, repository, service, controller).
+Withdrawal: Manages withdrawals (entity, repository, service, controller).
+Transactions: Manages transactions (entity, repository, service, controller).
+
+Frontend
+
+App Component (AppComponent): Main application entry point, including routing.
+Login Component (LoginComponent): Handles user login.
+Signup Component (SignupComponent): Allows new users to register.
+User Component (UserComponent): Displays account details and operations (deposit, withdrawal, transfer).
+
+Angular Services:
+
+HTTP Client: Facilitates API communication between Angular components and the backend.
+
+🔗 *API Endpoints*
+
+Customer Management
+
+Method Endpoint	Description
+
+GET	        |     /api/bank/customers	          |       Retrieves all customers.
+GET	        |     /api/bank/customers/{id}	      |       Retrieves a customer by ID.
+POST	    |     /api/bank/customers	          |       Creates a new customer.
+DELETE	    |     /api/bank/customers/{id}	      |       Deletes a customer by ID.
+
+Account Management
+
+Method Endpoint Description
+
+GET	      |  /api/bank/accounts	                  |   Retrieves all accounts.
+GET	      |  /api/bank/accounts/{accountNumber}	  |   Retrieves an account by account number.
+POST	  |  /api/bank/accounts	                  |   Creates a new account.
+DELETE	  |  /api/bank/accounts/{accountNumber}	  |   Deletes an account by account number.
+
+Deposits
+
+Method Endpoint	Description
+
+POST  |	/api/bank/deposits |  Makes a deposit to an account.
+
+Withdrawals
+
+Method Endpoint	Description
+
+POST | /api/bank/withdrawals  |	Makes a withdrawal from an account.
+
+Transactions
+
+Method Endpoint	Description
+
+GET	  |  /api/bank/transactions	                       | Retrieves all transactions.
+POST  |  /api/bank/transactions	                       | Creates a new transaction between two accounts.
+GET	  |  /api/bank/transactions/account/{accountNumber}| Retrieves transactions for a specific account.
+
+▶ *Running the Application*
+
+Clone the repository:
+
+    git clone https://github.com/ashishasnani27/finalProject.git
+
+Navigate into the project directory:
+
+    cd banking-application
+
+Build the project with Maven:
+
+    mvn clean install
+
+Run the application:
+
+    mvn spring-boot:run
+
+Access the application frontend at *http://localhost:4200*.
 
 
-## Installation and Setup
+🌱 *Future Improvements*
 
-1. *Prerequisites:*
-    * Java JDK (version X - please specify)
-    * Node.js and npm (or yarn)
-    * [Your Database] (with appropriate drivers/connectors)
+Enhanced Security: Add authentication and authorization.
+Data Validation: Strict input validation for data integrity.
+Detailed Error Handling: Improved, user-friendly error messages.
+Loan Management Module: Add a loan system.
+Advanced Transaction History: Filter and paginate transaction history.
+UI/UX Enhancements: Improve the frontend user experience.
+Testing: Increase unit and integration test coverage.
 
-2. *Backend Setup:*
-    * Clone the project repository.
-    * Navigate to the backend directory.
-    * Configure the database connection in application.properties (or application.yml).
-    * Build the project using Maven/Gradle: ./mvnw clean install (or ./gradlew build).
-    * Run the Spring Boot application: java -jar target/your-application.jar (or equivalent).
+📒 *Detailed Code Description*
 
-3. *Frontend Setup:*
-    * Navigate to the frontend directory.
-    * Install dependencies: npm install (or yarn install).
-    * Run the Angular development server: ng serve.
+⬆ Backend Components
 
-## Usage
+Application Entry Point
 
-1. *Signup:* Access the signup page and create a new account.
-2. *Login:*  Login using your credentials.
-3. *Dashboard:*  View your account balance and perform actions like deposit, withdrawal, and transfer.
-4. *Add Account:*  If you don't have an existing account, you can add a new account from the dashboard.
-5. *Transactions:*  Make deposits, withdrawals, and transfers by filling in the respective forms.
+FinalProjectApplication.java: The main entry class with @SpringBootApplication. Launches the application with SpringApplication.run.
 
+Account Module
 
-## API Endpoints
+    Entity (Account.java): Represents account data with fields like accountNumber, customerId, balance, and accountType.
+    Repository (AccountRepository.java): Interface extending JpaRepository<Account, String> for CRUD.
+    Service (AccountService.java): Contains methods to create, retrieve, and delete accounts.
+    Controller (AccountController.java): REST controller managing account endpoints (GET, POST, DELETE).
 
-### Customer Management
+Customer Module
 
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | /api/bank/customers | Create a new customer. |
-| GET | /api/bank/customers | Retrieve all customers (admin use only - consider removing/securing this in production). |
-| GET | /api/bank/customers/{id} | Retrieve a customer by ID. |
-| DELETE | /api/bank/customers/{id} | Delete a customer by ID (along with associated accounts). |
-| POST | /api/bank/signup | Registers a new customer (alternative to direct POST to /customers). |
-| POST | /api/bank/login |  Login a customer (returns customer details on success). |
+    Entity (Customer.java): Defines a customer with fields like id, name, address, phone, and email.
+    Repository (CustomerRepository.java): Interface for CRUD operations.
+    Service (CustomerService.java): Manages customer operations.
+    Controller (CustomerController.java): Exposes customer-related endpoints.
 
+Deposit Module
 
+    Entity (Deposit.java): Represents a deposit with fields like depositId, account, amount, and depositDate.
+    Repository (DepositRepository.java): Interface for CRUD.
+    Service (DepositService.java): Handles deposit transactions.
+    Controller (DepositController.java): Provides endpoint for creating deposits.
 
-### Account Management
+Withdrawal Module
 
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | /api/bank/accounts | Retrieve all accounts (admin use only - consider removing/securing). |
-| GET | /api/bank/accounts/{customerId} | Retrieve an account by customer ID. |
-| GET | /api/bank/accounts/byaccountnumber/{accountNumber} | Retrieve an account by account number. |
-| POST | /api/bank/accounts | Create a new account for a customer. |
-| DELETE | /api/bank/accounts/{accountNumber} | Delete an account by account number. |
+    Entity (Withdrawal.java): Maps withdrawals with fields like withdrawalId, account, amount, and withdrawalDate.
+    Repository (WithdrawalRepository.java): Interface for CRUD.
+    Service (WithdrawalService.java): Processes withdrawals.
+    Controller (WithdrawalController.java): Exposes withdrawal endpoint.
 
+Transaction Module
 
-### Transactions
+    Entity (Transaction.java): Manages transactions with fields like transactionId, sourceAccountNumber, targetAccountNumber, amount, and transactionDate.
+    Repository (TransactionRepository.java): Interface for CRUD.
+    Service (TransactionService.java): Manages transactions.
+    Controller (TransactionController.java): Exposes transaction-related endpoints.
 
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | /api/bank/deposits | Deposit funds into an account. |
-| POST | /api/bank/withdrawals | Withdraw funds from an account. |
-| POST | /api/bank/transactions | Transfer funds between accounts. |
-| GET | /api/bank/transactions | Get all transactions (admin - consider security restrictions). |
-| GET | /api/bank/transactions/account/{accountNumber} | Get transactions for a specific account. |
+⬇ Frontend Components
+
+App Component (AppComponent)
+The main component that defines the Angular app's structure and handles routing.
+
+Login Component (LoginComponent)
+Manages user authentication by sending login credentials to the backend.
+
+Signup Component (SignupComponent)
+Allows new users to register, sending their details to the backend for account creation.
+
+User Component (UserComponent)
+Displays account dashboard, allowing users to view balance, make deposits, withdrawals, and transfers.
+Dynamically updates data from backend responses.
+
+Angular Services
+HTTP Client: Facilitates API requests and retrieves or updates data from the backend.
+
+🈸 *Application Flow*
+
+Frontend User Interaction:
+Users access the Angular app and perform actions like Login, Signup, and Account Operations (viewing balances, deposits, withdrawals, transfers).
+
+Backend API Calls:
+Each action (Login, Account creation, Deposit) triggers an HTTP request from the Angular frontend to Spring Boot endpoints, defined in controllers (CustomerController, AccountController, etc.).
+The backend controllers route these requests to services that handle business logic and interact with the database through repositories.
+
+Database Operations:
+The repository layer uses Spring Data JPA to execute queries on the database for accounts, customers, and transactions.
+For instance, the AccountRepository retrieves account information, while TransactionRepository saves transaction details.
+
+Response to Frontend:
+The backend processes each request and returns JSON responses containing the requested data or confirmation of operations (e.g., successful deposit).
+The Angular app updates the UI based on the backend responses, showing account balances, transaction history, and confirmation messages.
+
+UI Updates and User Notification:
+The frontend components, upon receiving data from the backend, dynamically update the UI. For example:
+    Account Dashboard: Shows updated balance after deposits or withdrawals.
+    Transaction History: Displays a log of transactions, reflecting deposits, withdrawals, and transfers.

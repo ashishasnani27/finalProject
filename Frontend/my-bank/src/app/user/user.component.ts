@@ -57,14 +57,29 @@ export class UserComponent implements AfterViewInit{
 
   toggleDepositForm() {
     this.isDepositFormVisible = !this.isDepositFormVisible;
+    if(this.isDepositFormVisible){
+      this.isTransferFormVisible = false;
+      this.isWithdrawFormVisible = false;
+    }
+
   }
 
   toggleWithdrawForm() {
     this.isWithdrawFormVisible = !this.isWithdrawFormVisible;
+    if(this.isWithdrawFormVisible){
+      this.isTransferFormVisible = false;
+      this.isDepositFormVisible = false;
+    }
+
   }
 
   toggleTransferForm() {
     this.isTransferFormVisible = !this.isTransferFormVisible;
+    if(this.isTransferFormVisible){
+      this.isDepositFormVisible = false;
+      this.isWithdrawFormVisible = false;
+    }
+
   }
 
 
